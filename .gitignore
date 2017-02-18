@@ -1,6 +1,9 @@
 dist
 .cabal-sandbox
 cabal.sandbox.config
-public_keys*
-private_keys*
-client_public_keys*
+.stack-work/
+client_public_keys.txt
+private_keys/
+public_keys.txt
+keys/private
+keys/*.txt

@@ -1,0 +1,1 @@
+The stack scripts expect the keys to be in this directory.
