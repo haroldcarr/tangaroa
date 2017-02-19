@@ -8,7 +8,9 @@ import Network.Tangaroa.Client
 
 import Control.Lens
 import Data.Word
-import Network.Socket
+import Data.ByteString.Char8 as BSC8 (pack, unpack)
+import Network.Socket hiding (recv, sendTo)
+import Network.Socket.ByteString as NSBS (recv, sendTo)
 import System.Console.GetOpt
 import System.Environment
 import System.Exit
@@ -60,11 +62,11 @@ addOtherNode =
   maybe id (\p -> otherNodes %~ Set.insert (localhost, p)) . readMaybe
 
 getMsg :: Socket -> IO String
-getMsg sock = recv sock 8192
+getMsg sock = return . BSC8.unpack =<< recv sock 8192
 
 msgSend :: Socket -> NodeType -> String -> IO ()
 msgSend sock node s =
-  sendTo sock s (nodeSockAddr node) >> return ()
+  sendTo sock (BSC8.pack s) (nodeSockAddr node) >> return ()
 
 showDebug :: NodeType -> String -> IO ()
 showDebug node msg = putStrLn $ show (snd node) ++ " " ++ msg

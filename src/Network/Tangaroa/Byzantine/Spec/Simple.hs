@@ -10,7 +10,9 @@ import Network.Tangaroa.Byzantine.Types
 import Control.Lens
 import Data.Word
 import Data.Binary
-import Network.Socket
+import Data.ByteString.Char8 as BSC8 (pack, unpack)
+import Network.Socket hiding (recv, sendTo)
+import Network.Socket.ByteString as NSBS (recv, sendTo)
 import System.Console.GetOpt
 import System.Environment
 import System.Exit
@@ -104,11 +106,11 @@ getPrivateKey filename conf = do
     Nothing -> conf
 
 getMsg :: Socket -> IO String
-getMsg sock = recv sock 8192
+getMsg sock = return . BSC8.unpack =<< NSBS.recv sock 8192
 
 msgSend :: Socket -> NodeType -> String -> IO ()
 msgSend sock node s =
-  sendTo sock s (nodeSockAddr node) >> return ()
+  NSBS.sendTo sock (BSC8.pack s) (nodeSockAddr node) >> return ()
 
 showDebug :: NodeType -> String -> IO ()
 showDebug node msg = putStrLn $ show (snd node) ++ " " ++ msg

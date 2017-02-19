@@ -40,23 +40,29 @@ In a different terminal:
 ./scripts/stack/client.sh
 #+end_example
 
-In the client terminal, interact as shown (=`=>`= added to indicate what client returns):
+In the client terminal, interact as shown (=`# =>`= added to indicate what client returns):
 
 #+begin_example
 get foo
-=> Failure
+# => Failure
+
 insert foo bar
-=> Success
+# => Success
+
 get foo
-=> bar
+# => bar
+
 set foo baz
-=> Success
+# => Success
+
 get foo
-=> baz
+# => baz
+
 delete foo
-=> Success
+# => Success
+
 get foo
-=> Failure
+# => Failure
 #+end_example
 
 *** termination
