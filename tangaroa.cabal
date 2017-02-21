@@ -64,6 +64,7 @@ executable simpleserver
   build-depends:       base < 5
                      , containers
                      , tangaroa
+  other-modules:       Command
   hs-source-dirs:      bin/Simple
   ghc-options:         -Wall -threaded -rtsopts
   default-language:    Haskell2010
@@ -72,6 +73,7 @@ executable simpleclient
   main-is:             Client.hs
   build-depends:       base < 5
                      , tangaroa
+  other-modules:       Command
   hs-source-dirs:      bin/Simple
   ghc-options:         -Wall -threaded -rtsopts
   default-language:    Haskell2010
@@ -82,6 +84,7 @@ executable bftserver
                      , containers
                      , tangaroa
                      , binary
+  other-modules:       Command
   hs-source-dirs:      bin/Byzantine
   ghc-options:         -Wall -threaded -rtsopts
   default-language:    Haskell2010
@@ -91,6 +94,7 @@ executable bftclient
   build-depends:       base < 5
                      , tangaroa
                      , binary
+  other-modules:       Command
   hs-source-dirs:      bin/Byzantine
   ghc-options:         -Wall -threaded -rtsopts
   default-language:    Haskell2010
