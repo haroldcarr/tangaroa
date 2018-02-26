@@ -99,6 +99,16 @@ executable bftclient
   ghc-options:         -Wall -threaded -rtsopts
   default-language:    Haskell2010
 
+executable bftclienthc
+  main-is:             Clienthc.hs
+  build-depends:       base < 5
+                     , tangaroa
+                     , binary
+  other-modules:       Command
+  hs-source-dirs:      bin/Byzantine
+  ghc-options:         -Wall -threaded -rtsopts
+  default-language:    Haskell2010
+
 executable genkeys
   main-is:             GenerateKeys.hs
   build-depends:       base < 5

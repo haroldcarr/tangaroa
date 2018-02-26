@@ -16,9 +16,8 @@ data CommandType = Insert String String
 
 instance Binary CommandType
 
-data ResultType = Value String -- for successful Get
-                | Success      -- for successful Insert, Delete, Set
-                | Failure
+data ResultType = Success String String String     -- for successful Get, Insert, Delete, Set
+                | Failure String String String
   deriving (Show, Read, Generic)
 
 instance Binary ResultType

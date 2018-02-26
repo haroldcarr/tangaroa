@@ -19,11 +19,8 @@ getCommand = do
       getCommand
 
 showResult :: ResultType -> IO ()
-showResult r =
-  case r of
-    Value v -> putStrLn v
-    _       -> print r
+showResult = print
 
 main :: IO ()
-main = do
-  runClient (\_ -> return Failure) getCommand showResult
+main =
+  runClient (\_ -> return (Failure "apply should not be called" "" "")) getCommand showResult
